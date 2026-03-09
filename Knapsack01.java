@@ -1,0 +1,21 @@
+public class Knapsack01{
+    static int Knapsack01(int[] values,int[] weights, int C){
+        int n=values.length;
+        int[][]dp =new int[n+1][C+1];
+            for(int i=1;i<=n;i++){
+                for(int j=1;j<=C;j++){
+                    if(weights[i-1]<=j)
+                    dp[i][j]=Math.max(dp[i-1][j],values[i-1]+dp[i-1][j-weights[i-1]]);
+                    else
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
+            return dp[n][C];
+    }
+    public static void main(String[]args){
+        int[] values={1,10,6};
+        int[] weights={3,1,2};
+        int ans=Knapsack01(values,weights,3);
+        System.out.println(ans);
+    }
+}
